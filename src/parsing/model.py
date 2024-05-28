@@ -4,6 +4,7 @@ from tqdm import tqdm
 from transformers import (ByT5Tokenizer, T5ForConditionalGeneration,
                           MBartTokenizer, MBartForConditionalGeneration,
                           MT5Tokenizer, MT5ForConditionalGeneration,
+                          T5Tokenizer,
                           AdamW)
 from torch.optim.lr_scheduler import StepLR
 
@@ -60,6 +61,10 @@ class Generator:
         :return: The tokenizer and model
         """
         if "byt5" in model:
+            tokenizer = ByT5Tokenizer.from_pretrained(model)
+            model_instance = T5ForConditionalGeneration.from_pretrained(
+                load_path if load_path else model, max_length=Config["max_length"])
+        elif "t5" in model:
             tokenizer = ByT5Tokenizer.from_pretrained(model)
             model_instance = T5ForConditionalGeneration.from_pretrained(
                 load_path if load_path else model, max_length=Config["max_length"])
