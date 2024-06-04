@@ -10,7 +10,7 @@ from torch.optim.lr_scheduler import StepLR
 
 path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-Config = {"batch_size": 6,
+Config = {"batch_size": 3,
           "cuda_index": 0,
           "max_length": 512
           }
